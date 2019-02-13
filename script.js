@@ -1,6 +1,9 @@
 //Our Code Here:
 function loadSpecies() {
 	const url = "https://swapi.co/api/species/";
+	const url2 = "https://swapi.co/api/species/?page=2";
+	const url3 = "https://swapi.co/api/species/?page=3";
+	const url4 = "https://swapi.co/api/species/?page=4";
 	fetch(url)
 		.then(function(response){
 			return response.json();
