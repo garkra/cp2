@@ -24,7 +24,7 @@ function loadSpecies() {
 			for(let i = 0; i<nameList.length; i++){
 				resultsHTML += "<option>" + nameList[i] + "</option>\n";
 			}
-			
+
 			let mySelector = document.getElementById("selector");
 			mySelector.innerHTML = resultsHTML;																					
 		});
@@ -48,6 +48,7 @@ let species = {};
 loadSpecies();
 
 //Dummy Code Here:
+/*
 document.getElementById("weatherSubmit").addEventListener("click", function(event) {
 	event.preventDefault();
 	const value = document.getElementById("weatherInput").value;
@@ -118,4 +119,4 @@ function cardinalDirectionFinder(degrees){
 	}
 	return directions[newDegrees];
 }
-
+*/
