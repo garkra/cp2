@@ -50,6 +50,7 @@ function createList(){
 	nameList.sort();
 
 	let resultsHTML = "";
+	resultsHTML += "<option> Select a Species </option>\n";
 	for(let i = 0; i<nameList.length; i++){
 		resultsHTML += "<option>" + nameList[i] + "</option>\n";
 	}
@@ -68,6 +69,9 @@ loadSpecies();
 async function newSpeciesSelected(){
 	let selectorElement = document.getElementById("selector");
 	let curSpecies =  species[selectorElement.value];
+	if (curSpecies === null) {
+		return;
+	}
 
 	//Attributes of species
 	let classification = curSpecies.classification;
