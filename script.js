@@ -1,52 +1,66 @@
 //Our Code Here:
 function loadSpecies() {
-	const url = "https://swapi.co/api/species/";
+	const url =  "https://swapi.co/api/species/";
 	const url2 = "https://swapi.co/api/species/?page=2";
 	const url3 = "https://swapi.co/api/species/?page=3";
 	const url4 = "https://swapi.co/api/species/?page=4";
+
+	//
 	fetch(url)
 		.then(function(response){
 			return response.json();
-		}).then(function(json){
-			let resultsArray = json.results;
-			let nameList = [];
-			for(let i = 0; i<resultsArray.length; i++){
-				let curSpeciesName = resultsArray[i].name;
-				
-				//Pushing Current Species name onto the nameList array
-				nameList.push(curSpeciesName);
-				
-				//stores individual species as properties of an object
-				species[curSpeciesName] = resultsArray[i];				
-			}
-			
-			//Alphabetize nameList
-			nameList.sort();
-			
-			let resultsHTML = "";
-			for(let i = 0; i<nameList.length; i++){
-				resultsHTML += "<option>" + nameList[i] + "</option>\n";
-			}
+		}).then(loadArray);
 
-			let mySelector = document.getElementById("selector");
-			mySelector.innerHTML = resultsHTML;																					
-		});
+	fetch(url2)
+	.then(function(response){
+		return response.json();
+	}).then(loadArray);
+
+	fetch(url3)
+	.then(function(response){
+		return response.json();
+	}).then(loadArray);
+
+	fetch(url4)
+	.then(function(response){
+		return response.json();
+	}).then(loadArray);
 }
 
 
 
+function loadArray(json){
+	let resultsArray = json.results;
+	for(let i = 0; i<resultsArray.length; i++){
+		let curSpeciesName = resultsArray[i].name;
 
+		//Pushing Current Species name onto the nameList array
+		nameList.push(curSpeciesName);
 
+		//stores individual species as properties of an object
+		species[curSpeciesName] = resultsArray[i];
+	}
+	createList();
+}
 
+function createList(){
+	if(++numReturnedFetches < 4){
+		return;
+	}
+	//Alphabetize nameList
+	nameList.sort();
 
+	let resultsHTML = "";
+	for(let i = 0; i<nameList.length; i++){
+		resultsHTML += "<option>" + nameList[i] + "</option>\n";
+	}
 
+	let mySelector = document.getElementById("selector");
+	mySelector.innerHTML = resultsHTML;
+}
 
-
-
-
-
-
-
+let numReturnedFetches = 0;
+let nameList = [];
 let species = {};
 loadSpecies();
 
@@ -62,12 +76,12 @@ document.getElementById("weatherSubmit").addEventListener("click", function(even
 	fetch(url)
 		.then(function(response) {
 			return response.json();
-		}).then(function(json) {	
+		}).then(function(json) {
 			console.log(json);
 			let results = "";
 			results += '<h2 class=\"centered\">Weather in ' + json.name + "</h2>";
 			results += "<div class=\"weather-display\">";
-			
+
 			results += "<div class=\"single-description\">";
 			results += "<h2>Now</h2>";
 			results += '<h2>' + json.main.temp + " &deg;F</h2>";
