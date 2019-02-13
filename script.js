@@ -1,10 +1,51 @@
+//Our Code Here:
+function loadSpecies() {
+	const url = "https://swapi.co/api/species/";
+	fetch(url)
+		.then(function(response){
+			return response.json();
+		}).then(function(json){
+			let resultsArray = json.results;
+			let nameList = [];
+			for(let i = 0; i<resultsArray.length; i++){
+				let curSpeciesName = resultsArray[i].name;
+				
+				//Pushing Current Species name onto the nameList array
+				nameList.push(curSpeciesName);
+				
+				//stores individual species as properties of an object
+				species[curSpeciesName] = resultsArray[i];				
+			}
+			nameList.sort();
+																								
+		});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let species = {};
+loadSpecies();
+
+//Dummy Code Here:
 document.getElementById("weatherSubmit").addEventListener("click", function(event) {
 	event.preventDefault();
 	const value = document.getElementById("weatherInput").value;
 	if (value === "")
 		return;
 	console.log(value);
-	const url = "https://swapi.co/api/species/" + ;
+	const url = "https://api.co/api/species/" + ;
 	fetch(url)
 		.then(function(response) {
 			return response.json();
@@ -68,3 +109,4 @@ function cardinalDirectionFinder(degrees){
 	}
 	return directions[newDegrees];
 }
+

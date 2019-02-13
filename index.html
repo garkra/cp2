@@ -7,28 +7,45 @@
         <link rel="stylesheet" href="./style.css">        
     </head>
     <body>
-        <h1>The Species of Star Wars</h1>
+        <div class="header-bar">
+            <h1>The Species of Star Wars</h1>
+            <select onchange="newSpeciesSelected()" id="selector">
+
+                <!--Included if javascript doesn't overwrite this.-->
+                <option>Something Broke</option>   
+            
+            </select>
+            
+        </div>
 
         <div class="container" hidden>
-            <h2 class="name"></h2>
+            <h2 id="name"></h2>
             <h2>Classification</h2>
-                <p class="classification"></p>
-            <h2>designation</h2>
+                <ul id="classification"></ul>
+            <h2>Designation</h2>
+                <ul id="designation"></ul>
             <h2>Average Height</h2>
+                <ul id="average-height"></ul>
             <h2>Average Lifespan</h2>
+                <ul id="average-lifespan"></ul>
             <h2>Hair Colors</h2>
-		"average_height",
-		"average_lifespan",
-		"hair_colors",
-		"skin_colors",
-		"eye_colors",
-		"homeworld",
-		"language",
-		"people",
-		"url",
-		        
+                <ul id="hair-colors"></ul>
+            <h2>Skin Colors</h2>
+                <ul id="skin-colors"></ul>
+            <h2>Eye Colors</h2>
+                <ul id="eye-colors"></ul>
+            <h2>Home World</h2>
+                <ul id="homeworld"></ul>
+            <h2>Language</h2>     
+                <ul id="language"></ul>
         </div>
 
         <script text="type/javascript" src="./script.js"></script>
     </body>
+    
+    <footer class="footer">
+        <div class="container">
+            <span><a href="https://github.com/garkra/cp2">Github Repository Link</a></span>
+        </div>
+    </footer>
 </html>
