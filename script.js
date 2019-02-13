@@ -16,8 +16,17 @@ function loadSpecies() {
 				//stores individual species as properties of an object
 				species[curSpeciesName] = resultsArray[i];				
 			}
+			
+			//Alphabetize nameList
 			nameList.sort();
-																								
+			
+			let resultsHTML = "";
+			for(let i = 0; i<nameList.length; i++){
+				resultsHTML += "<option>" + nameList[i] + "</option>\n";
+			}
+			
+			let mySelector = document.getElementById("selector");
+			mySelector.innerHTML = resultsHTML;																					
 		});
 }
 
