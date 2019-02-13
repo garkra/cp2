@@ -1,4 +1,5 @@
-//Our Code Here:
+//Code to create Dropdown list:
+
 function loadSpecies() {
 	const url =  "https://swapi.co/api/species/";
 	const url2 = "https://swapi.co/api/species/?page=2";
@@ -26,8 +27,6 @@ function loadSpecies() {
 		return response.json();
 	}).then(loadArray);
 }
-
-
 
 function loadArray(json){
 	let resultsArray = json.results;
@@ -63,6 +62,67 @@ let numReturnedFetches = 0;
 let nameList = [];
 let species = {};
 loadSpecies();
+
+/*---------------------------------------------------------------------------------------------------*/
+//Code to display information about species:
+async function newSpeciesSelected(){
+	let selectorElement = document.getElementById("selector");
+	let curSpecies =  species[selectorElement.value];
+
+	//Attributes of species
+	let classification = curSpecies.classification;
+	let designation    = curSpecies.designation;
+	let averageHeight  = curSpecies.average_height;
+	let averageLifespan = curSpecies.average_lifespan;
+	let hairColors       = curSpecies.hair_colors;
+	let skinColors   	 = curSpecies.skin_colors;
+	let eyeColors 		 = curSpecies.eye_colors;
+	let homeworld  	     = await fetch(curSpecies.homeworld)
+		.then(function(response){
+			return response.json();
+		})
+			.then(function(json){
+				return json.name;
+		})
+			.catch(function(error){
+				return "n/a";
+		});
+	let language 		 = curSpecies.language;
+
+	//Inserting HTML here.
+	let htmlInsert = "";
+
+	document.getElementById("name").innerHTML = curSpecies.name;
+	document.getElementById("classification").innerHTML = "<li>" + classification + "</li>";
+	document.getElementById("designation").innerHTML = "<li>" + designation + "</li>";
+	document.getElementById("average-height").innerHTML = "<li>" + averageHeight + "</li>";
+	document.getElementById("average-lifespan").innerHTML = "<li>" + averageLifespan + "</li>";
+	document.getElementById("hair-colors").innerHTML = "<li>" + hairColors + "</li>";
+	document.getElementById("skin-colors").innerHTML = "<li>" + skinColors + "</li>";
+	document.getElementById("eye-colors").innerHTML = "<li>" + eyeColors + "</li>";
+	document.getElementById("homeworld").innerHTML = "<li>" + homeworld + "</li>";
+	document.getElementById("language").innerHTML = "<li>" + language + "</li>";
+
+	//Unhide Information about the species
+	document.getElementById("data-container").hidden = false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Dummy Code Here:
 /*
